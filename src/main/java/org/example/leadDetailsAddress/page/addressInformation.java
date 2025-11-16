@@ -53,6 +53,16 @@ public class addressInformation {
     // Select the next button on the Address details page
     By selectNextButton = By.xpath("//button[.//span[text()='Next']]");
 
+    // Select the next button on the loan details page
+    By selectNextButtonOnLoanDetails = By.xpath("//button[.//span[text()=' Next ']]");
+
+    // Select the back button on the banking journery page
+    By selectBackButton = By.xpath("//button[.//span[text()='Back ']]");
+
+    // Select the  back button on the lead details page
+    By selectBackButtonOnLeadPage = By.xpath("//button[.//span[text()='Back']]");
+
+
 
 
 
@@ -81,7 +91,7 @@ public class addressInformation {
         // Add Landmark on Current Residence Address
         WebElement addCurrentLandmark = wait.until(ExpectedConditions.visibilityOfElementLocated(selectLandmark));
         addCurrentLandmark.sendKeys(currentLandmark);
-        Thread.sleep(70000);
+        Thread.sleep(7000);
     }
 
 
@@ -119,6 +129,36 @@ public class addressInformation {
         // Click on the next  button on the Address details page
         WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(selectNextButton));
         nextButton.click();
+        Thread.sleep(20000);
+
+    }
+
+    public void checkPreviousData() throws InterruptedException{
+
+        // Check previous data clicking on next and back button
+
+        // Click on the back button on the bank statement page to check previous data
+        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(selectBackButton));
+        backButton.click();
+        Thread.sleep(3000);
+
+        // Click on the back button on the lead details page to check previous data
+        WebElement backButtononLead = wait.until(ExpectedConditions.elementToBeClickable(selectBackButtonOnLeadPage));
+        backButtononLead.click();
+        Thread.sleep(3000);
+
+        // Click on the Next button on the loan details page to check previous data
+        WebElement NextButtononLoan = wait.until(ExpectedConditions.elementToBeClickable(selectNextButtonOnLoanDetails));
+        NextButtononLoan.click();
+        Thread.sleep(3000);
+
+
+        // Click on the next button
+        for(int i = 1; i<4;i++){
+            WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(selectNextButton));
+            nextButton.click();
+            Thread.sleep(3000);
+        }
 
     }
 }

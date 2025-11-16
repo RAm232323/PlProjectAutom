@@ -1,5 +1,6 @@
 package org.example.All.test.run;
 
+import org.example.bankStatement.page.bankingJournery;
 import org.example.lead.details.page.leadDetails;
 import org.example.leadDetailsAddress.page.addressInformation;
 import org.example.leadDetailsLeadInformation.page.leadInformation;
@@ -18,6 +19,7 @@ public class allTestRun extends baseClass {
     leadDetails LeaDe;
     leadInformation leadInfo;
     addressInformation leadAddress;
+    bankingJournery bankJournery;
 
     @BeforeMethod
     public void initPage() {
@@ -27,7 +29,7 @@ public class allTestRun extends baseClass {
         LeaDe = new leadDetails(driver , wait);
         leadInfo = new leadInformation(driver , wait);
         leadAddress = new addressInformation(driver , wait);
-
+        bankJournery = new bankingJournery(driver , wait);
     }
 
     @Test
@@ -67,10 +69,18 @@ public class allTestRun extends baseClass {
         leadInfo.fillLeadInformation();
         leadInfo.employmentDetails("100000" , "yashk.yad@sequencetechno.com" , "DMI");
     }
+
     @Test(dependsOnMethods = {"leadInformation"})
     public void leadAddressInfo() throws InterruptedException{
         leadAddress.fillCurrentAddress("121" , "Narnaul" , "Huda Sector 1" , "test address");
         leadAddress.fillPermanentAddress();
         leadAddress.fillOfficeAddress("test office address" , " test office 2 near by" ,  "hahaha" ,  "123001");
+        leadAddress.checkPreviousData();
+    }
+
+    @Test(dependsOnMethods = {"leadAddressInfo"})
+    public void bankPageDetails() throws InterruptedException{
+        bankJournery.bankingPage();
+        bankJournery.offerPage();
     }
 }
